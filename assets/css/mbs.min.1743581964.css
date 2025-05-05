@@ -24,8 +24,8 @@
   --ratio-pt: 10/10;
 }
 * {
-  box-sizing: border-box;
   max-width: 100%;
+  box-sizing: border-box;
 }
 html {
   -webkit-text-size-adjust: 100%;
@@ -356,6 +356,13 @@ main.normal > * {
   font-size: 14px;
   font-size: clamp(0.7rem, 0.6023rem + 0.4167vw, 1.269rem);
 }
+#menu_button .burger-line {
+  display: none;
+}
+
+#menu_button .menu-text {
+  display: inline;
+}
 #menu_panel nav {
   display: flex;
   flex-direction: column;
@@ -477,16 +484,68 @@ form input[type="submit"]:hover {
   }
 }
 @media (max-width: 1024px) {
+  #menu_container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 2vh 4vw;
+  }
+
+  .logo-menu {
+    display: flex;
+    align-items: center;
+    max-width: 40%;
+  }
+
+  .logo-menu img {
+    max-height: 40px;
+    height: auto;
+    width: auto;
+  }
+
+  #menu_panel nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    width: 60%;
+  }
+
+  #menu_panel nav a {
+    margin-bottom: 1.2em;
+  }
+  #mobile_logo {
+    position: fixed;
+    top: 6vh;
+    left: 6vw;
+    z-index: 101;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+  }
+
+  #mobile_logo img {
+    height: 100%;
+    width: auto;
+    max-height: 40px;
+  }
+  .menu_open #mobile_logo,
+  .menu_open #menu_button {
+    display: none !important;
+  }
   .logo-menu {
     max-width: 30%;
   }
   #menu_panel {
-    bottom: -100vh;
-    top: initial;
-    transition: bottom 1s;
+    top: -100vh;
+    bottom: initial;
+    transition: top 1s;
   }
   .menu_open #menu_panel {
-    bottom: 0;
+    top: 0;
   }
   .menu_open #menu_button {
     background-color: var(--grey);
@@ -501,18 +560,32 @@ form input[type="submit"]:hover {
     left: 0;
   }
   #menu_button {
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    min-height: 50px;
-    height: 7.6vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: fixed;
+    top: 6vh;
+    right: 6vw;
+    z-index: 101;
+    width: 50px;
+    height: 36px;
     background-color: var(--white);
-    transition: background-color 0.3s;
-    will-change: background-color;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 6px 0;
     opacity: 0.97;
+  }
+
+  #menu_button .burger-line {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--copper);
+    border-radius: 1px;
+  }
+
+  #menu_button .menu-text {
+    display: none;
   }
 }
 .js #heroes {
@@ -974,6 +1047,10 @@ a#next::after {
   }
 }
 @media (min-width: 1025px) {
+  #mobile_logo {
+    display: none;
+  }
+
   .information #mbs_symbol,
   .scrolling .index #mbs_symbol {
     display: none;
@@ -1057,6 +1134,9 @@ a#next::after {
   letter-spacing: -0.05em;
 }
 @media (max-width: 1024px) {
+  #mbs_symbol {
+    display: none;
+  }
   #contact_details {
     padding-top: 3.8vh;
   }
